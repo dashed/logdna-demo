@@ -1,28 +1,53 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// 3rd-party imports
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+import React from 'react';
+import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components/macro';
+
+// baseline css
+import 'normalize.css';
+
+// local imports
+
+import Sidebar from './sidebar';
+import Content from './content/index.js';
+
+// components
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: sans-serif;
+
+    overscroll-behavior-y: none;
   }
-}
+`;
+
+const Container = styled.div`
+  background-color: #fff;
+
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-wrap: nowrap;
+`;
+
+const ContentWrapper = styled.div`
+  flex-grow: 9999;
+`;
+
+const App = () => {
+  return (
+    <React.Fragment>
+      <GlobalStyle />
+      <Container>
+        <Sidebar />
+        <ContentWrapper>
+          <Content />
+        </ContentWrapper>
+      </Container>
+    </React.Fragment>
+  );
+};
 
 export default App;
